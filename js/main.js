@@ -8,7 +8,8 @@ const app = document.getElementById('app');
 
 // Navigation buttons
 document.getElementById('btn-home').addEventListener('click', () => {
-  window.location.hash = '';
+  window.location.hash = '#';
+  showWelcome();
 });
 document.getElementById('btn-countries').addEventListener('click', () => {
   window.location.hash = 'countries';
@@ -34,6 +35,8 @@ function router() {
     case '#favorites':
       showFavorites();
       break;
+    case '#':
+    case '':
     default:
       showWelcome();
       break;
