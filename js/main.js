@@ -1,5 +1,3 @@
-// main.js - entry point of the application
-
 import { loadCountries } from './country.js';
 import { loadFavorites, getRecentlyViewed } from './favorites.js';
 import { loadRandomExplorer } from './randomExplorer.js';
@@ -8,7 +6,7 @@ const app = document.getElementById('app');
 
 // Navigation buttons
 document.getElementById('btn-home').addEventListener('click', () => {
-  window.location.hash = '#';
+  history.pushState(null, null, window.location.pathname);
   showWelcome();
 });
 document.getElementById('btn-countries').addEventListener('click', () => {
@@ -157,4 +155,10 @@ function showRecentlyViewed() {
 window.addEventListener('hashchange', router);
 
 // Run router on page load
-router();
+window.addEventListener('load', () => {
+  if (!window.location.hash || window.location.hash === '#') {
+    showWelcome();
+  } else {
+    router();
+  }
+});
