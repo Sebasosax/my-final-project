@@ -2,6 +2,7 @@
 
 import { getAllCountries } from './apiService.js';
 import { filterCountries } from './filter.js';
+import { saveRecentlyViewed } from './favorites.js';
 
 // Countries that have available recipes in TheMealDB
 const COUNTRIES_WITH_MEALS = [
@@ -67,19 +68,23 @@ function renderCountryCards(countries) {
     </div>
   `).join('');
 
-  // Add click event to each card to view recipes
+  // Add click event to each card to view recipes and country details
   document.querySelectorAll('.country-card').forEach(card => {
     card.addEventListener('click', () => {
       const name = card.querySelector('h3').textContent;
-      showCountryDetail(name);
+      const country = countries.find(c => c.name === name);
+      showCountryDetail(name, country);
     });
   });
 }
 
-// Display country details (recipes included)
-function showCountryDetail(countryName) {
+// Display country details and recipes
+function showCountryDetail(countryName, countryData) {
+  // Save to recently viewed
+  if (countryData) saveRecentlyViewed(countryData);
+
   import('./recipe.js').then(({ loadRecipesForCountry }) => {
     const app = document.getElementById('app');
-    loadRecipesForCountry(countryName, app);
+    loadRecipesForCountry(countryName, app, countryData);
   });
 }

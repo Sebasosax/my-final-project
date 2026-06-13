@@ -4,7 +4,6 @@ import { getMealsByArea, getMealById } from './apiService.js';
 import { saveFavorite, isFavorite } from './favorites.js';
 
 // Mapeo de nombre de país a área de TheMealDB
-// (TheMealDB no cubre todos los países, solo los principales)
 const COUNTRY_TO_AREA = {
   'American Samoa': 'American', 'United States': 'American',
   'Canada': 'Canadian', 'British': 'British', 'United Kingdom': 'British',
@@ -19,13 +18,25 @@ const COUNTRY_TO_AREA = {
   'Vietnam': 'Vietnamese'
 };
 
-// Carga y renderiza recetas para un país
-export async function loadRecipesForCountry(countryName, container) {
+// Carga y renderiza detalles del país y sus recetas
+export async function loadRecipesForCountry(countryName, container, countryData = null) {
   const area = COUNTRY_TO_AREA[countryName];
 
   container.innerHTML = `
-    <button id="btn-back">← Back to Countries</button>
-    <h2>🍽️ ${countryName} Cuisine</h2>
+    <button id="btn-back" aria-label="Back to countries">← Back to Countries</button>
+
+    <div class="country-detail">
+      ${countryData ? `
+        <img src="${countryData.flag || ''}" alt="Flag of ${countryName}" class="country-flag" />
+        <div class="country-info">
+          <h2>${countryName}</h2>
+          <p><strong>Capital:</strong> ${countryData.capital || 'N/A'}</p>
+          <p><strong>Currency:</strong> ${countryData.currency || 'N/A'}</p>
+        </div>
+      ` : `<h2>🍽️ ${countryName} Cuisine</h2>`}
+    </div>
+
+    <h3 class="recipes-title">🍽️ Traditional Recipes</h3>
     <div id="recipes-grid" class="recipes-grid">
       <p>Loading recipes...</p>
     </div>
@@ -93,7 +104,7 @@ export async function showRecipeDetail(mealId, container) {
   const favorited = isFavorite(meal.idMeal);
 
   container.innerHTML = `
-    <button id="btn-back">← Back to Recipes</button>
+    <button id="btn-back" aria-label="Back to recipes">← Back to Recipes</button>
     <div class="recipe-detail">
       <h2>${meal.strMeal}</h2>
       <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
