@@ -1,9 +1,9 @@
-// recipe.js - muestra recetas por país y detalle de cada receta
+// recipe.js - displays recipes by country and recipe details
 
 import { getMealsByArea, getMealById } from './apiService.js';
 import { saveFavorite, isFavorite } from './favorites.js';
 
-// Mapeo de nombre de país a área de TheMealDB
+// Mapping of country name to TheMealDB area
 const COUNTRY_TO_AREA = {
   'American Samoa': 'American', 'United States': 'American',
   'Canada': 'Canadian', 'British': 'British', 'United Kingdom': 'British',
@@ -18,7 +18,14 @@ const COUNTRY_TO_AREA = {
   'Vietnam': 'Vietnamese'
 };
 
-// Carga y renderiza detalles del país y sus recetas
+// Find country name from area (reverse lookup)
+function getCountryNameFromArea(area) {
+  return Object.keys(COUNTRY_TO_AREA).find(
+    key => COUNTRY_TO_AREA[key] === area
+  ) || area;
+}
+
+// Load and render country details and recipes
 export async function loadRecipesForCountry(countryName, container, countryData = null) {
   const area = COUNTRY_TO_AREA[countryName];
 
@@ -80,7 +87,7 @@ export async function loadRecipesForCountry(countryName, container, countryData 
   });
 }
 
-// Muestra el detalle completo de una receta
+// Show full recipe detail
 export async function showRecipeDetail(mealId, container) {
   container.innerHTML = '<p>Loading recipe...</p>';
 
@@ -91,7 +98,7 @@ export async function showRecipeDetail(mealId, container) {
     return;
   }
 
-  // Extrae ingredientes y medidas
+  // Extract ingredients and measures
   const ingredients = [];
   for (let i = 1; i <= 20; i++) {
     const ingredient = meal[`strIngredient${i}`];
@@ -122,8 +129,10 @@ export async function showRecipeDetail(mealId, container) {
     </div>
   `;
 
+  // Go back to recipes using reverse area lookup
   document.getElementById('btn-back').addEventListener('click', () => {
-    loadRecipesForCountry(meal.strArea, container);
+    const countryName = getCountryNameFromArea(meal.strArea);
+    loadRecipesForCountry(countryName, container);
   });
 
   document.getElementById('btn-favorite').addEventListener('click', () => {
