@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore traditional recipes and cuisines from countries around the world using World Cuisine Explorer." />
+  <meta name="keywords" content="world cuisine, recipes, international food, cooking, countries, traditional dishes" />
+  <meta name="author" content="Juan Sosa" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph (para compartir en redes sociales) -->
+  <meta property="og:title" content="World Cuisine Explorer" />
+  <meta property="og:description" content="Discover traditional recipes from countries around the world." />
+  <meta property="og:type" content="website" />
+
+  <title>World Cuisine Explorer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header role="banner">
+    <h1>🌍 World Cuisine Explorer</h1>
+    <nav role="navigation" aria-label="Main navigation">
+      <button id="btn-home" aria-label="Go to Home page">Home</button>
+      <button id="btn-random" aria-label="Explore a random cuisine">Random Cuisine</button>
+      <button id="btn-favorites" aria-label="View saved favorite recipes">Favorites</button>
+    </nav>
+  </header>
+
+  <main id="app" role="main" aria-live="polite">
+    <!-- Todo se renderiza aquí dinámicamente -->
+  </main>
+
+  <footer role="contentinfo">
+    <p>&copy; 2025 World Cuisine Explorer | Built by Juan Sosa</p>
+    <p>Data provided by <a href="https://www.themealdb.com" target="_blank" rel="noopener noreferrer">TheMealDB</a> and <a href="https://countriesnow.space" target="_blank" rel="noopener noreferrer">CountriesNow</a></p>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

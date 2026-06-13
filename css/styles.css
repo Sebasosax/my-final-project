@@ -1,0 +1,525 @@
+/* ===========================
+   CSS Variables / Theme
+=========================== */
+:root {
+  --primary: #D97706;
+  --secondary: #FBBF24;
+  --accent: #065F46;
+  --background: #FFF7ED;
+  --text: #1F2937;
+  --text-light: #6B7280;
+  --white: #FFFFFF;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --radius: 10px;
+}
+
+/* ===========================
+   Reset & Base
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+}
+
+/* ===========================
+   Animations
+=========================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.03); }
+}
+
+/* ===========================
+   Header & Navigation
+=========================== */
+header {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  box-shadow: var(--shadow);
+  animation: fadeIn 0.5s ease;
+}
+
+header h1 {
+  font-size: 1.5rem;
+}
+
+nav {
+  display: flex;
+  gap: 0.75rem;
+}
+
+nav button {
+  background-color: var(--white);
+  color: var(--primary);
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+nav button:hover {
+  background-color: var(--secondary);
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   Main Container
+=========================== */
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+/* ===========================
+   Controls (Search & Filter)
+=========================== */
+.controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.4s ease;
+}
+
+.controls input,
+.controls select {
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--secondary);
+  border-radius: var(--radius);
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  background-color: var(--white);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.controls input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.controls input:focus,
+.controls select:focus {
+  border-color: var(--primary);
+}
+
+/* ===========================
+   Country Cards Grid
+=========================== */
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.country-card {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  cursor: pointer;
+  animation: fadeInUp 0.4s ease both;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.country-card:nth-child(1)  { animation-delay: 0.05s; }
+.country-card:nth-child(2)  { animation-delay: 0.10s; }
+.country-card:nth-child(3)  { animation-delay: 0.15s; }
+.country-card:nth-child(4)  { animation-delay: 0.20s; }
+.country-card:nth-child(5)  { animation-delay: 0.25s; }
+.country-card:nth-child(6)  { animation-delay: 0.30s; }
+.country-card:nth-child(7)  { animation-delay: 0.35s; }
+.country-card:nth-child(8)  { animation-delay: 0.40s; }
+.country-card:nth-child(9)  { animation-delay: 0.45s; }
+.country-card:nth-child(10) { animation-delay: 0.50s; }
+
+.country-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.country-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.country-card:hover img {
+  transform: scale(1.05);
+}
+
+.card-info {
+  padding: 1rem;
+}
+
+.card-info h3 {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+  color: var(--text);
+}
+
+.card-info p {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 0.2rem;
+}
+
+/* ===========================
+   Recipe Cards Grid
+=========================== */
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.recipe-card {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  animation: fadeInUp 0.4s ease both;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.recipe-card:nth-child(1)  { animation-delay: 0.05s; }
+.recipe-card:nth-child(2)  { animation-delay: 0.10s; }
+.recipe-card:nth-child(3)  { animation-delay: 0.15s; }
+.recipe-card:nth-child(4)  { animation-delay: 0.20s; }
+.recipe-card:nth-child(5)  { animation-delay: 0.25s; }
+.recipe-card:nth-child(6)  { animation-delay: 0.30s; }
+
+.recipe-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.recipe-card:hover img {
+  transform: scale(1.05);
+}
+
+.card-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+/* ===========================
+   Buttons
+=========================== */
+button {
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+}
+
+.btn-view {
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-view:hover {
+  background-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.btn-remove {
+  background-color: transparent;
+  color: var(--text-light);
+  border: 1px solid var(--text-light);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  transition: all 0.2s;
+}
+
+.btn-remove:hover {
+  background-color: #FEE2E2;
+  color: #DC2626;
+  border-color: #DC2626;
+}
+
+#btn-back {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  transition: all 0.2s;
+}
+
+#btn-back:hover {
+  background-color: var(--primary);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+#btn-favorite,
+#btn-save-random {
+  background-color: var(--white);
+  color: var(--text);
+  border: 2px solid var(--secondary);
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  margin: 1rem 0;
+  transition: all 0.2s;
+}
+
+#btn-favorite:hover,
+#btn-save-random:hover {
+  background-color: var(--secondary);
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   Recipe Detail
+=========================== */
+.recipe-detail {
+  max-width: 750px;
+  margin: 0 auto;
+  animation: fadeInUp 0.4s ease;
+}
+
+.recipe-detail h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.recipe-detail img {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  animation: fadeIn 0.6s ease;
+}
+
+.recipe-detail h3,
+.recipe-detail h4 {
+  margin: 1.5rem 0 0.75rem;
+  color: var(--accent);
+}
+
+.recipe-detail ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.recipe-detail ul li {
+  background-color: var(--white);
+  border-left: 3px solid var(--secondary);
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  animation: fadeInUp 0.3s ease both;
+}
+
+.recipe-detail p {
+  line-height: 1.8;
+  color: var(--text);
+}
+
+/* ===========================
+   Random Explorer
+=========================== */
+.random-container {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto;
+  animation: fadeInUp 0.4s ease;
+}
+
+.random-container h2 {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.random-container > p {
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+}
+
+#btn-surprise,
+#btn-another {
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 700;
+  transition: background-color 0.2s, transform 0.2s;
+  animation: pulse 2s infinite;
+}
+
+#btn-surprise:hover,
+#btn-another:hover {
+  background-color: var(--accent);
+  transform: translateY(-2px);
+  animation: none;
+}
+
+.random-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.cuisine-tag {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+/* ===========================
+   Loading & Error
+=========================== */
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-light);
+  animation: fadeIn 0.3s ease;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--secondary);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+.error-message {
+  text-align: center;
+  padding: 2rem;
+  color: #DC2626;
+  animation: fadeInUp 0.3s ease;
+}
+
+.error-message button {
+  margin-top: 1rem;
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius);
+}
+
+/* ===========================
+   Footer
+=========================== */
+footer {
+  background-color: var(--primary);
+  color: var(--white);
+  text-align: center;
+  padding: 1.5rem 2rem;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: var(--secondary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  nav button {
+    flex: 1;
+    text-align: center;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  .random-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
